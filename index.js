@@ -25,18 +25,22 @@ app.get('/hc', (req, res) => {
 })
 app.post('/products', async (req, res) => {
     try {
-        console.log(req.body)
-        const { id, label, brand, img, price } = req.body
-        
+        const { id, label, brand, img, price } = req.body        
         const product = await ProductModel.customCreation({ id, label, brand, img, price })
         return res.json(product)
     } catch (error) {
-        console.log(error)
+        console.log(error.message)
         return res.send(error).status(500)
     }    
 })
-app.get('/products', (req, res) => {
-    res.send(fs.readFileSync('products.json'));
+app.get('/products', async(req, res) => {
+    try {
+        const products = await ProductModel.findAll()
+        return res.json(products)
+    } catch (error) {
+        console.log(error.message)
+        return res.send(error).status(500)
+    }
 });
 
 app.get('/cart', (req, res) => {
