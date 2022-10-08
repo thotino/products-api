@@ -2,12 +2,12 @@ require('../db')
 const { Schema, model } = require('ottoman')
 
 const ProductSchema = new Schema({
-  stock_id: String,
+  stock_id: { type: String, required: true },
   label: String,
   brand: String,
   img: String,
-  price: Number,
-  discount: Number,
+  price: { type: Number, required: true },
+  discount: { type: Number, min: 0, max: 100 },
   discount_type: String
 })
 

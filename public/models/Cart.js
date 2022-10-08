@@ -15,10 +15,12 @@ Cart.prototype.notify = function (event, data) {
 }
 
 Cart.prototype.setData = function (cartData) {
-  console.log({ cartData })
-  this.cartData = cartData
-  this.cartId = cartData.id
+  this.cartData.items = cartData
   this.notify('cartData', cartData)
+}
+
+Cart.prototype.setId = function (id) {
+  this.cartId = id
 }
 
 Cart.prototype.render = function () {
@@ -36,6 +38,7 @@ Cart.prototype.render = function () {
   productList.forEach(product => {
     html += `<li>${product.name} - Quantity : ${product.quantity}</li>`
   })
+
   return html
 }
 
@@ -53,8 +56,9 @@ Cart.prototype.add_product = async function (productToAdd) {
     console.error('Error Fetch API')
     return
   }
-  const newCartData = await fetchToAPI.json()
-  this.setData(newCartData)
+  const { id, items } = await fetchToAPI.json()
+
+  this.setData(items)
 }
 
 Cart.prototype.init = async function () {
@@ -71,6 +75,7 @@ Cart.prototype.init = async function () {
     return
   }
 
-  const cartData = await fetchDataFromApi.json()
-  this.setData(cartData)
+  const { id, items } = await fetchDataFromApi.json()
+  this.setData(items)
+  this.setId(id)
 }

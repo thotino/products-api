@@ -9,13 +9,14 @@ function Product (product) {
 }
 
 Product.prototype.render = function () {
+  // TO DO: the discounted price should be provided from the back
   const html = `
          <div class="products">
                 <img src="${this.img}" alt="" class="product_img">
                 <div class="product_title">${this.id} - ${this.brand}</div>
                 <div class="product_price_container">
                     ${this.discount ? `<div class="product_discount">${this.discount} %</div>` : ''}
-                    <div class="product_price ${this.discount ? 'line' : ''}">${this.price} €</div>
+                    <div class="product_price ${this.discount ? 'line' : ''}">${this.price} €</div>                    
                     ${this.discount ? `<div class="product_discounted_price">${this.price * this.discount / 100} €</div>` : ''}
                 </div>
                 <button class="product_button_add" id="${this.id}">Add to cart</button>

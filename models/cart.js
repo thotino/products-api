@@ -9,7 +9,7 @@ const CartSchema = new Schema({
     quantity: { type: Number, default: 0 }
   }]
 })
-CartSchema.index.findByName = { by: 'name', type: 'n1ql' }
+// CartSchema.index.findByName = { by: 'name', type: 'n1ql' }
 CartSchema.statics.customCreation = async function () {
   return this.create({ items: [] })
 }
