@@ -5,6 +5,8 @@ const bodyParser = require('body-parser')
 const db = require('./public/schema/db')
 const { ProductModel } = require('./public/schema/model/product')
 const { CartModel } = require('./public/schema/model/cart')
+
+const { port } = require('./config')
 const app = express()
 
 app.use(bodyParser.json())
@@ -42,20 +44,6 @@ app.get('/products', async (req, res) => {
   }
 })
 
-// app.post('/products/:id/discount', async (req, res) => {
-//     try {
-//         const { id: stockID } = req.params
-//         const { type, percentage } = req.body
-//         const product = await ProductModel.findByStockID(stockID)
-//         if(!product) throw new Error('ERR_PRODUCT_NOT_FOUND')
-//         const discount = await DiscountModel.customCreation({ type, percentage })
-//         return res.json(discount)
-//     } catch (error) {
-//         console.log(error.message)
-//         return res.send(error).status(500)
-//     }
-// })
-
 app.get('/cart', async (req, res) => {
   try {
     const cart = await CartModel.customCreation()
@@ -84,6 +72,6 @@ app.post('/cart/:id', async (req, res) => {
   }
 })
 
-app.listen(3000, function () {
-  console.log('App listening on port 3000')
+app.listen(port, function () {
+  console.log(`App listening on port ${port}`)
 })

@@ -6,6 +6,6 @@ module.exports = {
   port: nconf.get('APP_SERVER_PORT') || 3000,
   couchBaseHost: 'couchbase://localhost',
   couchBasePort: nconf.get('APP_COUCHBASE_PORT'),
-  couchBaseUsername: nconf.get('APP_COUCHBASE_USERNAME'),
-  couchbasePassword: nconf.get('APP_COUCHBASE_PASSWORD')
+  couchBaseUsername: nconf.get('APP_COUCHBASE_USERNAME') || 'infra',
+  couchbasePassword: nconf.get('APP_COUCHBASE_PASSWORD') || 'sensefuel'
 }

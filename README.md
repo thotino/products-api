@@ -1,4 +1,9 @@
 
+### Build the services
+```sh
+docker-compose build
+docker-compose up
+```
 
 ### Add a new product to the catalog
 ```sh

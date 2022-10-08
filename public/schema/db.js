@@ -7,4 +7,8 @@ ottoman.connect({
   bucketName: 'shop',
   username: couchBaseUsername,
   password: couchbasePassword
-}).then(() => { start() })
+}).then(() => { 
+  start()
+}).then(() => {
+  console.log('Connected with the datastore')
+})

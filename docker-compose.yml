@@ -41,5 +41,9 @@ services:
 
 networks:
     app-network:
+        driver: bridge
+        name: app-network
+    public:
+        external: true
 volumes:
     couchbase-data:
