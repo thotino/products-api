@@ -3,17 +3,19 @@ const lodash = require('lodash')
 const { Schema, model } = require('ottoman')
 
 const ProductSchema = new Schema({
-    stockID: String,
+    stock_id: String,
     label: String,
     brand: String,
     img: String,
-    price: Number
+    price: Number,
+    discount_percentage: Number,
+    discount_type: Number
 })
 
 ProductSchema.index = {
     findByStockID: {
         type: 'refdoc',
-        by: 'stockID'
+        by: 'stock_id'
     },
     findByLabel: {
         by: 'label'
@@ -23,18 +25,15 @@ ProductSchema.index = {
     }
 }
 
-ProductSchema.statics.customCreation = async function({ id, label, brand, img, price }) {
-    // const existingProduct = await this.find({ stockID: id })
-    // if (existingProduct && !lodash.isEmpty(existingProduct)) {
-    //     console.log(`Product ${id} already exists`)
-    //     return existingProduct
-    // }
+ProductSchema.statics.customCreation = async function({ id, label, brand, img, price, discountPercentage, discountType }) {
     return this.create({ 
-        stockID: id,
+        stock_id: id,
         label,
         brand,
         img, 
-        price
+        price,
+        discount_percentage: discountPercentage,
+        discount_type: discountType
      })
 }
 ProductSchema.statics.findAll = async function() {
