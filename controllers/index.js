@@ -6,7 +6,15 @@ const { CartModel } = require('../models/cart')
 const createProduct = async (req, res) => {
   try {
     const { id, label, brand, img, price, discount: discountPercentage, discount_type: discountType } = req.body
-    const product = await ProductModel.customCreation({ id, label, brand, img, price, discountPercentage, discountType })
+    const product = await ProductModel.customCreation({ 
+        id, 
+        label, 
+        brand, 
+        img, 
+        price, 
+        discountPercentage, 
+        discountType 
+    })
     return res.json(product)
   } catch (error) {
     console.log(error.message)
