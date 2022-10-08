@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const db = require('./public/schema/db')
 const {ProductModel} = require('./public/schema/model/product')
 const {CartModel} = require('./public/schema/model/cart')
+const { DiscountModel } = require('./public/schema/model/discount')
 const app = express();
 
 app.use(bodyParser.json());
@@ -33,6 +34,7 @@ app.post('/products', async (req, res) => {
         return res.send(error).status(500)
     }    
 })
+
 app.get('/products', async(req, res) => {
     try {
         const products = await ProductModel.findAll()
@@ -41,15 +43,49 @@ app.get('/products', async(req, res) => {
         console.log(error.message)
         return res.send(error).status(500)
     }
+})
+
+app.post('/products/:id/discount', async (req, res) => {
+    try {
+        const { id: stockID } = req.params
+        const { type, percentage } = req.body
+        const product = await ProductModel.findByStockID(stockID)
+        if(!product) throw new Error('ERR_PRODUCT_NOT_FOUND')
+        const discount = await DiscountModel.customCreation({ type, percentage })
+        return res.json(discount)
+    } catch (error) {
+        console.log(error.message)
+        return res.send(error).status(500)
+    }
+})
+
+app.get('/cart', async (req, res) => {
+    try {
+        const cart = await CartModel.customCreation()
+        return res.json(cart)
+    } catch (error) {
+        console.log(error.message)
+        return res.send(error).status(500)
+    }
 });
 
-app.get('/cart', (req, res) => {
-    res.send(fs.readFileSync('cart.json'));
-});
-
-app.post('/cart', (req, res) => {
-    console.log('received cart data', req.body);
-    res.send(fs.readFileSync('cart.json'));
+// Add product to cart
+app.post('/cart/:id', async (req, res) => {
+    try {
+        console.log('received cart data', req.body);
+    const { id: cartId } = req.params
+    const { productId } = req.body
+    const product = await ProductModel.findByStockID(productId)
+    if (!product) throw new Error('ERR_PRODUCT_NOT_FOUND')
+    
+    const cart = await CartModel.findById(cartId)
+    await cart.addNewProduct(product)
+    return res.json(cart)
+    // res.send(fs.readFileSync('cart.json'));
+    } catch (error) {
+        console.log(error.message)
+        return res.send(error).status(500)
+    }    
 });
 
 app.listen(3000, function () {
