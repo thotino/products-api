@@ -1,0 +1,45 @@
+version: "3"
+
+services:
+    app:
+        build: "."
+        container_name: app
+        networks:
+            - app-network
+        depends_on:
+            couchbase:
+                condition: service_healthy
+        environment:
+            - "NODE_ENV=development"
+            - "APP_COUCHBASE_PORT=8091"
+            - "APP_SERVER_PORT=3000"
+            - "APP_COUCHBASE_USERNAME=infra"
+            - "APP_COUCHBASE_PASSWORD=sensefuel"
+        ports:
+            - 3000:3000
+        healthcheck:
+            test: ["CMD", "curl", "-f", "http://localhost:3000/hc"]            
+            interval: 1s
+            timeout: 3s
+            retries: 10
+
+    couchbase:
+        image: "couchbase:latest"
+        container_name: couchbase
+        networks:
+            - app-network
+        volumes:
+            - couchbase-data:/opt/couchbase/var
+        ports:
+            - 8091:8091
+        healthcheck:
+            test: ["CMD", "curl", "-f", "http://localhost:8091"]
+            interval: 1s
+            timeout: 3s
+            retries: 60
+
+
+networks:
+    {}
+volumes:
+    {}
