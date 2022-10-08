@@ -40,6 +40,6 @@ services:
 
 
 networks:
-    {}
+    app-network:
 volumes:
-    {}
+    couchbase-data:
