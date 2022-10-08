@@ -19,6 +19,10 @@ app.get('/', (req, res) => {
 });
 
   console.log({ ProductModel, CartModel })
+
+app.get('/hc', (req, res) => {
+    res.json({ status: 'OK' })
+})
 app.post('/products', async (req, res) => {
     try {
         console.log(req.body)
