@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "./node_modules/.bin/standard .",
+    "lintfix": "./node_modules/.bin/standard . --fix",
+    "test": "jest --coverage --verbose --detectOpenHandles"
   },
   "author": "Sensefuel",
   "license": "ISC",
@@ -14,6 +16,12 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "ottoman": "^2.2.1",
-    "couchbase": "^4.1.3"
+    "couchbase": "^4.1.3",
+    "nconf": "^0.12.0"
+  },
+  "devDependencies": {
+    "standard": "^17.0.0",
+    "jest": "^28.1.3",
+    "cucumber": "^6.0.7"
   }
 }
