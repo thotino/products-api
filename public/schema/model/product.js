@@ -8,8 +8,8 @@ const ProductSchema = new Schema({
     brand: String,
     img: String,
     price: Number,
-    discount_percentage: Number,
-    discount_type: Number
+    discount: Number,
+    discount_type: String
 })
 
 ProductSchema.index = {
@@ -32,7 +32,7 @@ ProductSchema.statics.customCreation = async function({ id, label, brand, img, p
         brand,
         img, 
         price,
-        discount_percentage: discountPercentage,
+        discount: discountPercentage,
         discount_type: discountType
      })
 }

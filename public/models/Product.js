@@ -1,6 +1,6 @@
 function Product(product) {
 
-    this.id = product.stockID;
+    this.id = product.stock_id;
     this.label = product.label;
     this.brand = product.brand;
     this.img = product.img;

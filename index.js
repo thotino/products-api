@@ -26,8 +26,8 @@ app.get('/hc', (req, res) => {
 })
 app.post('/products', async (req, res) => {
     try {
-        const { id, label, brand, img, price } = req.body        
-        const product = await ProductModel.customCreation({ id, label, brand, img, price })
+        const { id, label, brand, img, price, discount: discountPercentage, discount_type: discountType } = req.body        
+        const product = await ProductModel.customCreation({ id, label, brand, img, price, discountPercentage, discountType })
         return res.json(product)
     } catch (error) {
         console.log(error.message)
