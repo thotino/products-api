@@ -29,7 +29,7 @@ Cart.prototype.render = function () {
     // }]);
     if (this.cartData.items) {
         product_list = this.cartData.items.map(item => { return {
-            name: item.product.label,
+            name: item.product,
             quantity: item.quantity
     } 
     }) 
