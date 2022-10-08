@@ -32,6 +32,8 @@ services:
             - app-network
         volumes:
             - couchbase-data:/opt/couchbase/var
+        expose:
+            - 8091
         ports:
             - 8091:8091
         healthcheck:
