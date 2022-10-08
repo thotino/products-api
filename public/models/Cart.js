@@ -22,13 +22,9 @@ Cart.prototype.setData = function (cartData) {
 }
 
 Cart.prototype.render = function () {
-  let product_list = []
-  // Object.keys(this.cartData.items).map(key => product_list = [...product_list, {
-  //     name: key,
-  //     quantity: this.cartData.items[key].quantity
-  // }]);
+  let productList = []
   if (this.cartData.items) {
-    product_list = this.cartData.items.map(item => {
+    productList = this.cartData.items.map(item => {
       return {
         name: item.product,
         quantity: item.quantity
@@ -37,7 +33,7 @@ Cart.prototype.render = function () {
   }
 
   let html = ''
-  product_list.map(product => {
+  productList.forEach(product => {
     html += `<li>${product.name} - Quantity : ${product.quantity}</li>`
   })
   return html
@@ -62,7 +58,13 @@ Cart.prototype.add_product = async function (productToAdd) {
 }
 
 Cart.prototype.init = async function () {
-  const fetchDataFromApi = await fetch('http://localhost:3000/cart').catch(error => console.error('Error API ', error.message))
+  const fetchDataFromApi = await fetch('http://localhost:3000/cart', {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    }
+  }).catch(error => console.error('Error API ', error.message))
 
   if (!fetchDataFromApi.ok) {
     console.error('Error fetch API')

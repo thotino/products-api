@@ -1,5 +1,4 @@
-const db = require('../db')
-const lodash = require('lodash')
+require('../db')
 const { Schema, model } = require('ottoman')
 
 const ProductSchema = new Schema({

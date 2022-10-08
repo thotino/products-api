@@ -42,14 +42,13 @@
 
     document.getElementById('main').innerHTML = ''
 
-    productsData.map(dataProduct => {
-      // const newProductWithDataProductAndDiscountInfos = new Product(Object.assign(dataProduct, productsData.infos[dataProduct.id]));
+    productsData.forEach(dataProduct => {
       const newProduct = new Product(dataProduct)
 
       document.getElementById('main').innerHTML += `<div class="products">${newProduct.render()}</div>`
     })
 
-    Array.from(document.getElementsByClassName('product_button_add')).map(element => {
+    Array.from(document.getElementsByClassName('product_button_add')).forEach(element => {
       element.addEventListener('click', async () => {
         await this.cart.add_product(element.id)
       }, false)

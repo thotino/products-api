@@ -1,5 +1,5 @@
 
-### Build the services
+### Build and start the services
 ```sh
 docker-compose build
 docker-compose up
@@ -10,8 +10,6 @@ docker-compose up
 curl -X POST \
   http://localhost:3000/products \
   -H 'Content-Type: application/json' \
-  -H 'Postman-Token: 5fd5507f-b714-426f-9931-af9fdb4a8caa' \
-  -H 'cache-control: no-cache' \
   -d '{
         "id": "tn1",
         "label": "tshirt",
@@ -28,6 +26,8 @@ curl -X POST \
 curl -X GET \
   http://localhost:3000/products \
   -H 'Content-Type: application/json' \
-  -H 'Postman-Token: 27eeaced-f7a8-40bf-917a-ba8eceef1793' \
-  -H 'cache-control: no-cache'
 ```
+
+### Create a new cart
+
+### Add a product to the cart
