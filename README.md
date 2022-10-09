@@ -1,5 +1,6 @@
 # PRODUCTS APP
-## Features
+Welcome to the products store app!
+## Technical features
 * ExpressJS server
 * Couchbase database with Ottoman ODM
 * CRUD services
@@ -18,13 +19,15 @@ yarn start
 docker run -d --name db -p 8091-8097:8091-8097 -p 11210:11210 -p 11207:11207 -p 18091-18095:18091-18095 -p 18096:18096 -p 18097:18097 couchbase
 
 ```
-### Build and start the services (with Docker)
+### Build and start the services (with Docker compose)
 ```sh
 docker-compose build
 docker-compose up
 ```
-
+This server is now listening on the port 3000. You can browse to http://localhost:3000 to get the UI.
+Here are some exemples of calls you could perform with this API.
 ### Add a new product to the catalog
+
 ```sh
 curl -X POST \
   http://localhost:3000/products \
@@ -56,3 +59,10 @@ curl -X POST \
 ```
 
 ### Add a product to the cart
+```sh
+curl -X POST \
+  http://localhost:3000/cart/2cfcc9d3-521a-4861-a4da-9d7e5c02d5dc \
+  -H 'Content-Type: application/json' \
+  -H 'cache-control: no-cache' \
+  -d '{ "productId":"tn1" }'
+```
