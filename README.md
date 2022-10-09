@@ -6,6 +6,10 @@ Welcome to the products store app!
 * CRUD services
 * Dockerization
 
+## Architecture
+This sketch explain the architecture of this app: 
+![](PRODUCTS-APP%402x.png)
+
 ## Install and start locally
 ```sh
 git clone https://github.com/thotino/products-api.git
