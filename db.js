@@ -1,10 +1,9 @@
 const { couchBaseUsername, couchbasePassword } = require('./config')
 
-// Instantiate Couchbase and Ottoman
+// Instantiate Ottoman
 const { Ottoman, start } = require('ottoman')
 const ottoman = new Ottoman({ collectionName: '_default' })
 ottoman.connect({
-  // connectionString: 'couchbase://localhost',
   connectionString: 'couchbase://0.0.0.0:8091',
   bucketName: 'shop',
   username: couchBaseUsername,
