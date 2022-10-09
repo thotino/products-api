@@ -5,7 +5,7 @@ services:
         build: "."
         container_name: app
         networks:
-            - app-network
+            - app_network
         depends_on:
             couchbase:
                 condition: service_healthy
@@ -29,9 +29,9 @@ services:
         image: "couchbase:latest"
         container_name: couchbase
         networks:
-            - app-network
+            - app_network
         volumes:
-            - couchbase-data:/opt/couchbase/var
+            - couchbase_data:/opt/couchbase/var
         expose:
             - 8091
         ports:
@@ -44,10 +44,10 @@ services:
 
 
 networks:
-    app-network:
+    app_network:
         driver: bridge
-        name: app-network
+        name: app_network
     public:
         external: true
 volumes:
-    couchbase-data:
+    couchbase_data:
