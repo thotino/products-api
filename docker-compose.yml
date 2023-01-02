@@ -6,9 +6,9 @@ services:
         container_name: app
         networks:
             - app_network
-        depends_on:
-            couchbase:
-                condition: service_healthy
+        # depends_on:
+        #     - couchbase:
+        #         condition: service_healthy
         environment:
             - "NODE_ENV=development"
             - "APP_COUCHBASE_PORT=8091"
@@ -46,7 +46,7 @@ services:
 networks:
     app_network:
         driver: bridge
-        name: app_network
+        # name: app_network
     public:
         external: true
 volumes:
