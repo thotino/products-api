@@ -38,5 +38,5 @@ ProductSchema.statics.findAll = async function () {
   const products = await this.find({})
   return products.rows
 }
-// const ProductModel = model('Product', ProductSchema, { collectionName: 'Product' })
+
 module.exports = { ProductSchema }

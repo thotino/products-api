@@ -6,7 +6,7 @@ class CartClient extends CouchbaseClient {
     super(options)
   }
   registerModels() {
-    this.Cart = this.db.model('Cart', CartSchema)
+    this.Cart = this.connection.model('Cart', CartSchema)
   }
 }
 

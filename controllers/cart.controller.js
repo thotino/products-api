@@ -21,7 +21,7 @@ const addProductToCart = async (req, res) => {
     const product = await productClient.Product.findByStockID(productId)
     if (!product) throw new Error('ERR_PRODUCT_NOT_FOUND')
 
-    const cart = await CartModel.findById(cartId)
+    const cart = await cartClient.Cart.findById(cartId)
     await cart.addNewProduct(product)
     return res.json(cart)
   } catch (error) {

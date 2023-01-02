@@ -6,7 +6,7 @@ class ProductClient extends CouchbaseClient {
     super(options)
   }
   registerModels() {
-    this.Product = this.db.model('Product', ProductSchema)
+    this.Product = this.connection.model('Product', ProductSchema)
   }
 }
 

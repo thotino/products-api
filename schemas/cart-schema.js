@@ -24,6 +24,5 @@ CartSchema.methods.addNewProduct = function (product) {
   }
   return this.save()
 }
-// const CartModel = model('Cart', CartSchema, { collectionName: 'Cart' })
 
 module.exports = { CartSchema }
