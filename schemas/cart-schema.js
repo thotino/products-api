@@ -1,7 +1,6 @@
-require('../db')
 const lodash = require('lodash')
 
-const { Schema, model } = require('ottoman')
+const { Schema } = require('ottoman')
 
 const CartSchema = new Schema({
   items: [{
@@ -25,6 +24,5 @@ CartSchema.methods.addNewProduct = function (product) {
   }
   return this.save()
 }
-const CartModel = model('Cart', CartSchema, { collectionName: 'Cart' })
 
-module.exports = { CartSchema, CartModel }
+module.exports = { CartSchema }

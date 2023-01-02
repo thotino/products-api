@@ -1,5 +1,4 @@
-require('../db')
-const { Schema, model } = require('ottoman')
+const { Schema } = require('ottoman')
 
 const ProductSchema = new Schema({
   stock_id: { type: String, required: true },
@@ -39,5 +38,5 @@ ProductSchema.statics.findAll = async function () {
   const products = await this.find({})
   return products.rows
 }
-const ProductModel = model('Product', ProductSchema, { collectionName: 'Product' })
-module.exports = { ProductSchema, ProductModel }
+
+module.exports = { ProductSchema }

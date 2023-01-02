@@ -1,9 +1,9 @@
-const { ProductModel } = require('../models/product')
-
+const { ProductClient } = require('../models/product-model')
+const productController = new ProductClient()
 const createProduct = async (req, res) => {
   try {
     const { id, label, brand, img, price, discount: discountPercentage, discount_type: discountType } = req.body
-    const product = await ProductModel.customCreation({
+    const product = await productController.Product.customCreation({
       id,
       label,
       brand,
@@ -21,7 +21,7 @@ const createProduct = async (req, res) => {
 
 const findAllProducts = async (req, res) => {
   try {
-    const products = await ProductModel.findAll()
+    const products = await productController.Product.findAll()
     return res.json(products)
   } catch (error) {
     console.log(error.message)
